@@ -1,0 +1,170 @@
+
+CREATE DATABASE LeagueStats;
+USE LeagueStats
+
+
+CREATE TABLE `ChampionTbl` (
+  `ChampionId` int(11) NOT NULL,
+  `ChampionName` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+CREATE TABLE `ItemTbl` (
+  `ItemID` int(11) NOT NULL,
+  `ItemLink` mediumtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+CREATE TABLE `MatchStatsTbl` (
+  `MatchStatsId` int(11) NOT NULL,
+  `SummonerMatchFk` int(11) NOT NULL,
+  `MinionsKilled` int(11) NOT NULL,
+  `DmgDealt` int(11) NOT NULL,
+  `DmgTaken` int(11) NOT NULL,
+  `TurretDmgDealt` int(11) NOT NULL,
+  `TotalGold` int(11) NOT NULL,
+  `Lane` varchar(55) NOT NULL,
+  `Win` tinyint(1) NOT NULL,
+  `item1` int(11) NOT NULL,
+  `item2` int(11) NOT NULL,
+  `item3` int(11) NOT NULL,
+  `item4` int(11) NOT NULL,
+  `item5` int(11) NOT NULL,
+  `item6` int(11) NOT NULL,
+  `kills` int(11) NOT NULL,
+  `deaths` int(11) NOT NULL,
+  `assists` int(11) NOT NULL,
+  `PrimaryKeyStone` int(11) NOT NULL,
+  `PrimarySlot1` int(11) NOT NULL,
+  `PrimarySlot2` int(11) NOT NULL,
+  `PrimarySlot3` int(11) NOT NULL,
+  `SecondarySlot1` int(11) NOT NULL,
+  `SecondarySlot2` int(11) NOT NULL,
+  `SummonerSpell1` int(11) NOT NULL,
+  `SummonerSpell2` int(11) NOT NULL,
+  `CurrentMasteryPoints` int(11) NOT NULL,
+  `EnemyChampionFk` int(11) NOT NULL,
+  `DragonKills` int(11) NOT NULL,
+  `BaronKills` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+CREATE TABLE `MatchTbl` (
+  `MatchId` varchar(55) NOT NULL,
+  `Patch` varchar(55) NOT NULL DEFAULT '13.4',
+  `QueueType` varchar(100) NOT NULL,
+  `RankFk` int(11) NOT NULL,
+  `GameDuration` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
+CREATE TABLE `RankTbl` (
+  `RankId` int(11) NOT NULL,
+  `Rank` varchar(55) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+INSERT INTO `RankTbl` (`RankId`, `Rank`) VALUES
+(1, 'Unranked'),
+(2, 'Iron'),
+(3, 'Bronze'),
+(4, 'Silver'),
+(5, 'Gold'),
+(6, 'Platinum'),
+(7, 'Diamond'),
+(8, 'Master'),
+(9, 'Grandmaster'),
+(10, 'Challenger');
+
+CREATE TABLE `SummonerMatchTbl` (
+  `SummonerMatchId` int(11) NOT NULL,
+  `SummonerFk` int(11) NOT NULL,
+  `MatchFk` varchar(55) NOT NULL,
+  `ChampionFk` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+CREATE TABLE `SummonerUserTbl` (
+  `SummonerID` int(11) NOT NULL,
+  `SummonerName` varchar(155) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+CREATE TABLE `TeamMatchTbl` (
+  `TeamID` int(11) NOT NULL,
+  `MatchFk` varchar(155) NOT NULL,
+  `B1Champ` int(11) NOT NULL,
+  `B2Champ` int(11) NOT NULL,
+  `B3Champ` int(11) NOT NULL,
+  `B4Champ` int(11) NOT NULL,
+  `B5Champ` int(11) NOT NULL,
+  `R1Champ` int(11) NOT NULL,
+  `R2Champ` int(11) NOT NULL,
+  `R3Champ` int(11) NOT NULL,
+  `R4Champ` int(11) NOT NULL,
+  `R5Champ` int(11) NOT NULL,
+  `BlueBaronKills` int(11) NOT NULL,
+  `BlueRiftHeraldKills` int(11) NOT NULL,
+  `BlueDragonKills` int(11) NOT NULL,
+  `BlueTowerKills` int(11) NOT NULL,
+  `BlueKills` int(11) NOT NULL,
+  `RedBaronKills` int(11) NOT NULL,
+  `RedRiftHeraldKills` int(11) NOT NULL,
+  `RedDragonKills` int(11) NOT NULL,
+  `RedTowerKills` int(11) NOT NULL,
+  `RedKills` int(11) NOT NULL,
+  `RedWin` int(11) NOT NULL,
+  `BlueWin` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
+ALTER TABLE `ChampionTbl`
+  ADD PRIMARY KEY (`ChampionId`);
+  
+ALTER TABLE `ItemTbl`
+  ADD PRIMARY KEY (`ItemID`);
+
+ALTER TABLE `MatchStatsTbl`
+  ADD PRIMARY KEY (`MatchStatsId`),
+  ADD UNIQUE KEY `CurrentMasteryPoints` (`MatchStatsId`),
+  ADD KEY `item1` (`item1`),
+  ADD KEY `item2` (`item2`),
+  ADD KEY `item3` (`item3`),
+  ADD KEY `item4` (`item4`),
+  ADD KEY `item5` (`item5`),
+  ADD KEY `item6` (`item6`),
+  ADD KEY `EnemyChampionFk` (`EnemyChampionFk`),
+  ADD KEY `MatchFk` (`SummonerMatchFk`);
+
+ALTER TABLE `MatchTbl`
+ADD PRIMARY KEY (`MatchId`);
+
+ALTER TABLE `RankTbl`
+ADD PRIMARY KEY (`RankId`);
+
+
+ALTER TABLE `SummonerMatchTbl`
+ADD PRIMARY KEY (`SummonerMatchId`),
+ADD KEY `SummonerFk` (`SummonerFk`),
+ADD KEY `MatchFk` (`MatchFk`),
+ADD KEY `ChampionFk` (`ChampionFk`);
+
+ALTER TABLE `SummonerUserTbl`
+ADD PRIMARY KEY (`SummonerID`),
+ADD UNIQUE KEY `SummonerName_2` (`SummonerName`),
+ADD KEY `SummonerName` (`SummonerName`);
+
+ALTER TABLE `TeamMatchTbl`
+ADD PRIMARY KEY (`TeamID`),
+ADD UNIQUE KEY `MatchFk` (`MatchFk`);
+
+ALTER TABLE `SummonerMatchTbl`
+ADD CONSTRAINT `SummonerMatchTbl_ibfk_1` FOREIGN KEY (`ChampionFk`) REFERENCES `ChampionTbl` (`ChampionId`),
+ADD CONSTRAINT `SummonerMatchTbl_ibfk_2` FOREIGN KEY (`MatchFk`) REFERENCES `MatchTbl` (`MatchId`),
+ADD CONSTRAINT `SummonerMatchTbl_ibfk_3` FOREIGN KEY (`SummonerFk`) REFERENCES `SummonerUserTbl` (`SummonerID`);
+  
+ALTER TABLE `TeamMatchTbl`
+ADD CONSTRAINT `TeamMatchTbl_ibfk_1` FOREIGN KEY (`MatchFk`) REFERENCES `MatchTbl` (`MatchId`);
+
+ALTER TABLE `MatchStatsTbl`
+ADD CONSTRAINT `MatchStatsTbl_ibfk_1` FOREIGN KEY (`item1`) REFERENCES `ItemTbl` (`ItemID`),
+ADD CONSTRAINT `MatchStatsTbl_ibfk_2` FOREIGN KEY (`item2`) REFERENCES `ItemTbl` (`ItemID`),
+ADD CONSTRAINT `MatchStatsTbl_ibfk_3` FOREIGN KEY (`item3`) REFERENCES `ItemTbl` (`ItemID`),
+ADD CONSTRAINT `MatchStatsTbl_ibfk_4` FOREIGN KEY (`item4`) REFERENCES `ItemTbl` (`ItemID`),
+ADD CONSTRAINT `MatchStatsTbl_ibfk_5` FOREIGN KEY (`item5`) REFERENCES `ItemTbl` (`ItemID`),
+ADD CONSTRAINT `MatchStatsTbl_ibfk_6` FOREIGN KEY (`item6`) REFERENCES `ItemTbl` (`ItemID`),
+ADD CONSTRAINT `MatchStatsTbl_ibfk_7` FOREIGN KEY (`SummonerMatchFk`) REFERENCES `SummonerMatchTbl` (`SummonerMatchId`);
