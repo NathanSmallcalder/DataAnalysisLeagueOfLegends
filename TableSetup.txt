@@ -168,3 +168,7 @@ ADD CONSTRAINT `MatchStatsTbl_ibfk_4` FOREIGN KEY (`item4`) REFERENCES `ItemTbl`
 ADD CONSTRAINT `MatchStatsTbl_ibfk_5` FOREIGN KEY (`item5`) REFERENCES `ItemTbl` (`ItemID`),
 ADD CONSTRAINT `MatchStatsTbl_ibfk_6` FOREIGN KEY (`item6`) REFERENCES `ItemTbl` (`ItemID`),
 ADD CONSTRAINT `MatchStatsTbl_ibfk_7` FOREIGN KEY (`SummonerMatchFk`) REFERENCES `SummonerMatchTbl` (`SummonerMatchId`);
+
+CREATE USER 'data'@'%' IDENTIFIED BY 'temp';
+GRANT ALL PRIVILEGES ON LeagueStats.* to 'data'@'%';
+
