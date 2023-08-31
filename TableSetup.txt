@@ -4,7 +4,7 @@ USE LeagueStats
 
 
 CREATE TABLE `ChampionTbl` (
-  `ChampionId` int(11) NOT NULL,
+  `ChampionId` int(11) NOT NULL AUTO_INCREMENT,
   `ChampionName` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -47,7 +47,7 @@ CREATE TABLE `MatchStatsTbl` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 CREATE TABLE `MatchTbl` (
-  `MatchId` varchar(55) NOT NULL,
+  `MatchId` varchar(55) NOT NULL AUTO_INCREMENT,
   `Patch` varchar(55) NOT NULL DEFAULT '13.4',
   `QueueType` varchar(100) NOT NULL,
   `RankFk` int(11) NOT NULL,
@@ -80,12 +80,12 @@ CREATE TABLE `SummonerMatchTbl` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 CREATE TABLE `SummonerUserTbl` (
-  `SummonerID` int(11) NOT NULL,
+  `SummonerID` int(11) NOT NULL AUTO_INCREMENT,
   `SummonerName` varchar(155) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 CREATE TABLE `TeamMatchTbl` (
-  `TeamID` int(11) NOT NULL,
+  `TeamID` int(11) NOT NULL AUTO_INCREMENT,
   `MatchFk` varchar(155) NOT NULL,
   `B1Champ` int(11) NOT NULL,
   `B2Champ` int(11) NOT NULL,
