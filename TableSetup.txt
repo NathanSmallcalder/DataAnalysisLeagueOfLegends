@@ -1,20 +1,16 @@
--- Create the database if it doesn't exist
 CREATE DATABASE IF NOT EXISTS LeagueStats;
 USE LeagueStats;
 
--- Create the ChampionTbl table
 CREATE TABLE IF NOT EXISTS ChampionTbl (
   ChampionId INT AUTO_INCREMENT PRIMARY KEY,
   ChampionName VARCHAR(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Create the ItemTbl table
 CREATE TABLE IF NOT EXISTS ItemTbl (
   ItemID INT AUTO_INCREMENT PRIMARY KEY,
   ItemLink MEDIUMTEXT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Create the MatchStatsTbl table
 CREATE TABLE IF NOT EXISTS MatchStatsTbl (
   MatchStatsId INT AUTO_INCREMENT PRIMARY KEY,
   SummonerMatchFk INT NOT NULL,
@@ -48,7 +44,6 @@ CREATE TABLE IF NOT EXISTS MatchStatsTbl (
   BaronKills INT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Create the MatchTbl table
 CREATE TABLE IF NOT EXISTS MatchTbl (
   MatchId INT AUTO_INCREMENT PRIMARY KEY,
   Patch VARCHAR(55) NOT NULL DEFAULT '13.4',
@@ -57,13 +52,11 @@ CREATE TABLE IF NOT EXISTS MatchTbl (
   GameDuration INT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Create the RankTbl table
 CREATE TABLE IF NOT EXISTS RankTbl (
   RankId INT PRIMARY KEY,
   Rank VARCHAR(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Insert data into RankTbl
 INSERT INTO RankTbl (RankId, Rank) VALUES
 (1, 'Unranked'),
 (2, 'Iron'),
@@ -76,7 +69,7 @@ INSERT INTO RankTbl (RankId, Rank) VALUES
 (9, 'Grandmaster'),
 (10, 'Challenger');
 
--- Create the SummonerMatchTbl table
+
 CREATE TABLE IF NOT EXISTS SummonerMatchTbl (
   SummonerMatchId INT AUTO_INCREMENT PRIMARY KEY,
   SummonerFk INT NOT NULL,
@@ -84,13 +77,13 @@ CREATE TABLE IF NOT EXISTS SummonerMatchTbl (
   ChampionFk INT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Create the SummonerUserTbl table
+
 CREATE TABLE IF NOT EXISTS SummonerUserTbl (
   SummonerID INT AUTO_INCREMENT PRIMARY KEY,
   SummonerName VARCHAR(155) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Create the TeamMatchTbl table
+
 CREATE TABLE IF NOT EXISTS TeamMatchTbl (
   TeamID INT AUTO_INCREMENT PRIMARY KEY,
   MatchFk INT NOT NULL,
@@ -118,7 +111,7 @@ CREATE TABLE IF NOT EXISTS TeamMatchTbl (
   BlueWin INT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Add foreign key constraints
+
 ALTER TABLE MatchStatsTbl
   ADD CONSTRAINT FK_MatchStats_SummonerMatch FOREIGN KEY (SummonerMatchFk) REFERENCES SummonerMatchTbl (SummonerMatchId),
   ADD CONSTRAINT FK_MatchStats_Item1 FOREIGN KEY (item1) REFERENCES ItemTbl (ItemID),
