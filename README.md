@@ -25,6 +25,7 @@ sql_password = "INSERT DATABASE PASSWORD"
 sql_user = "INSERT DATABAESE NAME"
 host = "INSERT HOST"
 ```
+
 After creating the config.py file, the DataCollection.py Script can be run, due to rate limits the script will take a while to gather data.
 Once data is gathered on a summoner, the user can be change by altering lines 31 and 32 to change the region or summoner's name.
 ```python
