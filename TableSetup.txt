@@ -54,10 +54,10 @@ CREATE TABLE IF NOT EXISTS MatchTbl (
 
 CREATE TABLE IF NOT EXISTS RankTbl (
   RankId INT PRIMARY KEY,
-  Rank VARCHAR(55) NOT NULL
+  RankName VARCHAR(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
-INSERT INTO RankTbl (RankId, Rank) VALUES
+INSERT INTO RankTbl (RankId, RankName) VALUES
 (1, 'Unranked'),
 (2, 'Iron'),
 (3, 'Bronze'),
