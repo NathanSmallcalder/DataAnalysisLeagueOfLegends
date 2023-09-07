@@ -34,7 +34,9 @@ Region = "EUW1"
 summonerName = "#####"
 
 ```
+### Database ERD
 
+![image](https://github.com/NathanSmallcalder/DataAnalysisLoL/assets/74361286/f3107797-aab2-463d-82e7-9ae17c2d9e1b)
 
 
 
