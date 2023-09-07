@@ -26,10 +26,10 @@ config = {
 
 connection = mysql.connector.connect(**config)
 
-cursor = connection.cursor(buffered=True)
+cursor = connection.cursor()
      
 Region = "EUW1"
-summonerName = "Gumadruxy"
+summonerName = "calisian"
 connection.autocommit = True
 db_Info = connection.get_server_info()
 
@@ -44,7 +44,7 @@ connection.commit()
 
 MatchIDs = requests.get("https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/"+ SummonerInfo['puuid'] +  "/ids?start=0&count=20&api_key=" + API)
 MatchIDs = MatchIDs.json()
-matchData = getMatches("euw1" ,MatchIDs,SummonerInfo)
+matchData = getMatches("euw1" ,MatchIDs,SummonerInfo, RankedDetails, mastery)
 matchData2 = getsMatchData()
 Match = matchData2[1]['MatchIDS']
 Match = Normalise(Match)
@@ -92,27 +92,26 @@ for MatchId in MatchIDs:
     cursor.execute("SELECT `MatchFk` FROM `TeamMatchTbl` WHERE `MatchFk` = (%s)", (str(MatchId) ,))
     matchCheck = cursor.fetchone()
 
-    print(matchCheck)
-    if matchCheck == None:
-        insertMatch()
-
     Match = matchData2[i]['MatchIDS']
     Patch = matchData2[i]['gameVersion']
     Rank = matchData2[i]['Rank']
     GameType = matchData2[i]['GameType']
+    GameDuration = matchData[i]['GameDuration']
 
-   
     Match = Normalise(Match)
     GameType = Normalise(GameType)
     Rank = Normalise(Rank)
     Patch = Normalise(Patch)
-   
-    cursor.execute("SELECT `RankId` FROM `RankTbl` WHERE `Rank` = (%s)", (Rank ,))
+    cursor.execute("SELECT `RankId` FROM `RankTbl` WHERE `RankName` = (%s)", (Rank ,))
     RankId = cursor.fetchone()
 
     RankId = int(Normalise(RankId))
     print(Rank)
-   
+    print(matchCheck)
+
+    if matchCheck != None:
+        insertMatch(MatchId,Patch,GameType,RankId,GameDuration)
+
     #PlayerMatchData
     cursor.execute("SELECT `SummonerID` FROM `SummonerUserTbl` WHERE `SummonerName` = (%s)", (Name ,))
     SummonerID = cursor.fetchone()
@@ -131,7 +130,6 @@ for MatchId in MatchIDs:
     print("MatchPlayed", MatchVerify)
 
     win = matchData[i]['win']
-    GameDuration = matchData[i]['GameDuration']
 
     masteryScore = 0
     
