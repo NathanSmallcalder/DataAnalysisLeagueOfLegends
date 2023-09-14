@@ -13,8 +13,6 @@ docker run --name=LeagueStats --env="MYSQL_ROOT_PASSWORD=root_password" -p 3306:
 docker exec -it LeagueStats mysql -h localhost -P 3306 --protocol=tcp -u root -proot_password
 
 ```
-
-
 ### Database ERD
 
 ### Setup
