@@ -49,12 +49,11 @@ Riot Games API can sometimes contain inconsistent role data if the player is ass
 
 ### Data Visulization
 
-
-
+After running the scripts in the JsonGenerator directory, JSON files were imported into [Tableau](link]) for analysis.
 
 ### Limitations
 
 The pre-existing data is from League of Legends Patch 13.6.1.
-
+The data is limited, rank data is varying and baised towards unranked players.
 
 
