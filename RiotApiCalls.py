@@ -40,6 +40,17 @@ summonerSpells = {  # Summoner Spell Image Data Store
     55: 'summoner_smite.png'
 }
 
+def create_connection():
+    config = {
+    'user': 'root',
+    'password': 'root_password',
+    'host': 'localhost',
+    'port': 3306,
+    'database': 'LeagueStats',
+    }
+    connection = mysql.connector.connect(**config)
+    cursor = connection.cursor()
+
 #Get Item Images - Pass in itemList []
 def GetItemImages(itemList):
     connection = create_connection()
