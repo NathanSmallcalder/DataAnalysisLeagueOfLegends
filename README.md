@@ -1,4 +1,4 @@
-### Introduction
+<ins> ### Introduction </ins>
 
 The project focuses on the data collection and data analysis of the popular video game League of Legends. The project uses docker, python and MySQL. 
 Users can collect data using the DataCollection.py file or using the pre-existing data in the table setup script.
@@ -14,6 +14,8 @@ docker exec -it LeagueStats mysql -h localhost -P 3306 --protocol=tcp -u root -p
 
 ```
 ### Database ERD
+
+![image](https://github.com/NathanSmallcalder/DataAnalysisLoL/assets/74361286/9377328d-996c-4df7-bca8-3324587663cb)
 
 ### Setup
 
