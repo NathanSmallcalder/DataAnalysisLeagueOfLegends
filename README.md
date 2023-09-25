@@ -51,7 +51,7 @@ Riot Games API can sometimes contain inconsistent role data if the player is ass
 
 ### Data Visulization
 
-After running the scripts in the JsonGenerator directory, JSON files were imported into [Tableau](https://public.tableau.com/app/profile/nathan.smallcalder/viz/LeagueofLegendsDashboard_16951445607870/Story1]) for analysis.
+After running the scripts in the JsonGenerator directory, JSON files were imported into [Tableau](https://public.tableau.com/app/profile/nathan.smallcalder/viz/LeagueofLegendsDashboard_16951445607870/Story1) for analysis.
 
 ### Limitations
 
