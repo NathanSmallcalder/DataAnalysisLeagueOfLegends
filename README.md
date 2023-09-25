@@ -1,4 +1,4 @@
-<ins> ### Introduction </ins>
+### Introduction 
 
 The project focuses on the data collection and data analysis of the popular video game League of Legends. The project uses docker, python and MySQL. 
 Users can collect data using the DataCollection.py file or using the pre-existing data in the table setup script.
