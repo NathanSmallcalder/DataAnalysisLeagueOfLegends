@@ -33,7 +33,7 @@ host = "INSERT HOST"
 
 ### Data Collection
 
-To gather data, a script was created to query a single summoner, gathering in-depth statistics in their last 15 matches. This script gathered important match details, including match results, kills, damage, deaths, assists, and loadout. Data was gathered from the Riot Games API and stored in a MySQL database, the data from the table setup scripts contains data used on a [Previous Machine Learning Project](https://github.com/NathanSmallcalder/Dissertation]).
+To gather data, a script was created to query a single summoner, gathering in-depth statistics in their last 15 matches. This script gathered important match details, including match results, kills, damage, deaths, assists, and loadout. Data was gathered from the Riot Games API and stored in a MySQL database, the data from the table setup scripts contains data used on a [Previous Machine Learning Project](https://github.com/NathanSmallcalder/Dissertation).
 
 After creating the config.py file, the DataCollection.py Script can be run, due to rate limits the script will take a while to gather data.
 Once data is gathered on a summoner, the user can be change by altering lines 31 and 32 to change the region or summoner's name.
