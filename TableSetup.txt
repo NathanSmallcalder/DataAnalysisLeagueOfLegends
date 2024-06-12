@@ -202,7 +202,10 @@ INSERT INTO `ChampionTbl` (`ChampionId`, `ChampionName`) VALUES
 (895, 'Nilah'),
 (897, 'KSante'),
 (902, 'Milio'),
-(950, 'Naafiri');
+(950, 'Naafiri'),
+(901,'Smolder'),
+(910,'Hwei'),
+(233,'Briar');
 
 -- --------------------------------------------------------
 
@@ -11952,17 +11955,17 @@ CREATE TABLE `RankTbl` (
 --
 
 INSERT INTO `RankTbl` (`RankId`, `RankName`) VALUES
-(1, 'Unranked'),
-(2, 'Iron'),
-(3, 'Bronze'),
-(4, 'Silver'),
-(5, 'Gold'),
-(6, 'Platinum'),
+(0, 'Unranked'),
+(1, 'Iron'),
+(2, 'Bronze'),
+(3, 'Silver'),
+(4, 'Gold'),
+(5, 'Platinum'),
+(6, 'Emerald'),
 (7, 'Diamond'),
 (8, 'Master'),
 (9, 'Grandmaster'),
 (10, 'Challenger');
-
 -- --------------------------------------------------------
 
 --
